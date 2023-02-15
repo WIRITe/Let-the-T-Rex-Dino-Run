@@ -14,7 +14,7 @@ public class PlatformMoover : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        _rb2D.velocity = new Vector2(Speed * -1, 0);
+        if(PlayerScript.isCanMoove)gameObject.transform.position = new Vector2(transform.position.x - Speed * Time.deltaTime, transform.position.y);
     }
 
     void Update()
