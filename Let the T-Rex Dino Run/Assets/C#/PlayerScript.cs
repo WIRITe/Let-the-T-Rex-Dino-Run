@@ -34,19 +34,20 @@ public class PlayerScript : MonoBehaviour
     public TMP_Text _text;
 
     //triggers
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == GroundTag) grounded = true;
 
-        else if(collision.tag == BarierTag)
-        {
-            OnDead();
-        }
-        else if (collision.tag == BonusTag)
+        if (collision.tag == BonusTag)
         {
             Score += collision.gameObject.GetComponent<BonusScript>().Count;
             Destroy(collision.gameObject);
         }
+        else if (collision.tag == BarierTag)
+        {
+            OnDead();
+        }
+        
     }
     void OnTriggerExit2D(Collider2D collision)
     {

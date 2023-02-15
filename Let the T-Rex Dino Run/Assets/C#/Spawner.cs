@@ -14,8 +14,13 @@ public class Spawner : MonoBehaviour
     {
         if(Timer >= TimeToNextSpawn)
         {
-            Spawn();
-            Timer = 0;
+            if (MainSpawner.AbleToSpawn)
+            {
+                Spawn();
+                Timer = 0;
+                MainSpawner.AbleToSpawn = false;
+                MainSpawner.Timer = 2;
+            }
         }
 
         Timer += Time.deltaTime;

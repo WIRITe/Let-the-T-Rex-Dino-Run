@@ -44,3 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG
+    uniqueID: 4038635731
+    locked: 0
+  - name: SpawningStuff
+    uniqueID: 516471115
+    locked: 0
+  - name: Player
+    uniqueID: 1448263493
+    locked: 0
