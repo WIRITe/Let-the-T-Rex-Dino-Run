@@ -7,25 +7,37 @@ using TMPro;
 
 public class StartUiController : MonoBehaviour
 {
+    public static string address;
+
     public static ThirdwebSDK sdk;
     public TMP_Text walletInfotext;
     public TMP_Text Ballance;
 
     public GameObject UiLogin;
     public GameObject UiEnter;
+    public GameObject BuyTryingsScreen;
+
+    public int NextSceneIndex;
+
+    public Text t;
 
     void Start()
     {
         sdk = new ThirdwebSDK("goerli");
-        
 
-        UiLogin.SetActive(true);
-        UiEnter.SetActive(false);
+
+        if (address == null) { UiLogin.SetActive(true); UiEnter.SetActive(false); }
+
+        else { UiLogin.SetActive(false); UiEnter.SetActive(true); }
+
+        Balance();
     }
+
     public void MetamaskLogin()
     {
         ConnectWallet(WalletProvider.MetaMask);
     }
+
     public void WalletConnectLogin()
     {
         ConnectWallet(WalletProvider.WalletConnect);
@@ -34,16 +46,16 @@ public class StartUiController : MonoBehaviour
     private async void ConnectWallet(WalletProvider provider)
     {
         walletInfotext.text = "Connecting...";
-        string address = await sdk.wallet.Connect(new WalletConnection()
+        address = await sdk.wallet.Connect(new WalletConnection()
         {
             provider = provider,
             chainId = 5 // Switch the wallet Goerli on connection
         });
         walletInfotext.text = "Connected as: " + address;
+        PlayerPrefs.SetString("address", address);
 
         UiLogin.SetActive(false);
         UiEnter.SetActive(true);
-        if (Ballance != null) Balance();
     }
 
     public async void Balance()
@@ -51,5 +63,26 @@ public class StartUiController : MonoBehaviour
         Ballance.text = "Loading...";
         CurrencyValue balance = await sdk.wallet.GetBalance();
         Ballance.text = "Balance: " + balance.displayValue.Substring(0, 3) + " " + balance.symbol;
+    }
+
+    public async void DisconnectWallet()
+    {
+        await sdk.wallet.Disconnect();
+        UiLogin.SetActive(true);
+        UiEnter.SetActive(false);
+    }
+
+    public void GoInGame()
+    {
+        if(PlayerPrefs.GetInt("Tryings") > 0)
+        {
+            SceneManager.LoadScene(NextSceneIndex);
+
+            PlayerPrefs.SetInt("Tryings", PlayerPrefs.GetInt("Tryings") - 1);
+        }
+        else
+        {
+            BuyTryingsScreen.SetActive(true);
+        }
     }
 }

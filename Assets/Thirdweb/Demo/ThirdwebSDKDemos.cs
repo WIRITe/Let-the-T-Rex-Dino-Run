@@ -270,7 +270,7 @@ public class ThirdwebSDKDemos : MonoBehaviour
 
     public async void CustomContract()
     {
-        var contract = sdk.GetContract("0x62Cf5485B6C24b707E47C5E0FB2EAe7EbE18EC4c");
+        var contract = sdk.GetContract("0x6295ffe51c385ff20afffc0cab262ab97a81ad40");
         try
         {
             // custom read
@@ -279,11 +279,13 @@ public class ThirdwebSDKDemos : MonoBehaviour
             resultText.text = "Read custom token uri: " + result;
             // custom write
             await contract.Write("claimKitten");
+
             // custom write with transaction overrides
-            // await contract.Write("claim", new TransactionRequest
-            // {
-            //     value = "0.05".ToWei() // 0.05 ETH
-            // }, "0xE79ee09bD47F4F5381dbbACaCff2040f2FbC5803", 0, 1);
+            await contract.Write("claim", new TransactionRequest
+            {
+                value = "0.05".ToWei() // 0.05 ETH
+            }, "0x6295ffe51c385ff20afffc0cab262ab97a81ad40", 0, 1);
+
             resultText.text = "Custom contraact call successful";
         }
         catch (System.Exception e)

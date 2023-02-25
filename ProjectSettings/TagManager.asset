@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - LitePlatf
+  - StartUpPlatf
+  - UpPlatf
+  - EndUpPlatf
+  - Token
+  - thirdweb
+  - Bullet
+  - Enemy
+  - Bonus
+  - Sword
   layers:
   - Default
   - TransparentFX
@@ -40,4 +51,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 2232872433
+    locked: 0
+  - name: Player
+    uniqueID: 3173298845
     locked: 0
