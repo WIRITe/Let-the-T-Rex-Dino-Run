@@ -19,7 +19,6 @@ public class StartUiController : MonoBehaviour
 
     public int NextSceneIndex;
 
-    public Text t;
 
     void Start()
     {
