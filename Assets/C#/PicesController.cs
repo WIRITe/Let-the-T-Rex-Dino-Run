@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PicesController : MonoBehaviour
 {
@@ -16,8 +17,15 @@ public class PicesController : MonoBehaviour
 
     public TMP_Text text;
 
+    public Animator _anim;
+    
     private void Awake()
     {
+        if(PlayerPrefs.GetInt(NameOfSavedPices) >= 6)
+        {
+            _anim.SetBool("alreadyCreated", true);
+        }
+
         DrowPices();
     }
 
@@ -44,11 +52,17 @@ public class PicesController : MonoBehaviour
     {
         if (PlayerPrefs.GetInt(NameOfSavedTokens) <= 0) return;
 
+        else if (PlayerPrefs.GetInt(NameOfSavedPices) >= 6)
+        {
+            Solve();
+        }
+
         PlayerPrefs.SetInt(NameOfSavedPices, PlayerPrefs.GetInt(NameOfSavedPices) + 1);
+        PlayerPrefs.SetInt(NameOfSavedTokens, PlayerPrefs.GetInt(NameOfSavedTokens) - 1000);
+
+        
 
         DrowPices();
-
-        PlayerPrefs.SetInt(NameOfSavedTokens, PlayerPrefs.GetInt(NameOfSavedTokens) - 1000);
     }
 
     public void DrowPices()
@@ -71,13 +85,13 @@ public class PicesController : MonoBehaviour
         }
     }
 
-    void CheckTockens()
-    {
-        if (Tokens >= 6000) Solve();
-    }
-
     void Solve()
     {
-        
+        _anim.SetBool("Started", true);
+    }
+
+    public void Clouse()
+    {
+        SceneManager.LoadScene(0);
     }
 }

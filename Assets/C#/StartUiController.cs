@@ -20,6 +20,7 @@ public class StartUiController : MonoBehaviour
     public int NextSceneIndex;
 
 
+
     void Start()
     {
         sdk = new ThirdwebSDK("goerli");
@@ -83,5 +84,10 @@ public class StartUiController : MonoBehaviour
         {
             BuyTryingsScreen.SetActive(true);
         }
+    }
+
+    public void OnRewardButton()
+    {
+        SceneManager.LoadScene(2);
     }
 }
