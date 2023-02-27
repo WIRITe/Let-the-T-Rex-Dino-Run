@@ -960,7 +960,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 259428918}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2070240445}
+        m_TargetAssemblyTypeName: StartUiController, Assembly-CSharp
+        m_MethodName: OnRewardButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &259428918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3992,7 +4004,6 @@ MonoBehaviour:
   UiEnter: {fileID: 2120252784}
   BuyTryingsScreen: {fileID: 1502274437}
   NextSceneIndex: 1
-  t: {fileID: 0}
 --- !u!4 &2070240446
 Transform:
   m_ObjectHideFlags: 0

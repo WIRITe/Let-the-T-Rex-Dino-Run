@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 2e870e67f02e1bb459de237d0e6230ca
+  - enabled: 1
+    path: Assets/Scenes/RevardsScene.unity
+    guid: 5ace618ab90527e4db04b2060eb0d795
   m_configObjects: {}
